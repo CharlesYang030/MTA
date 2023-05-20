@@ -1,3 +1,9 @@
+'''
+ # Copyright
+ # 2023/4/28
+ # Team: Text Analytics and Mining Lab (TAM) of South China Normal University
+ # Author: Charles Yang
+'''
 import json
 import os
 import random
@@ -5,6 +11,7 @@ import pandas as pd
 import torch
 import pickle
 from torch.utils.data import Dataset,DataLoader
+from utils import _transform
 from PIL import Image
 import warnings
 Image.MAX_IMAGE_PIXELS = None
@@ -21,7 +28,7 @@ class load_data(object):
 
     def load_lvwsd_data(self):
         # load L-VWSD.data
-        lvwsd_path = os.path.join(self.L_VWSD_dir,'main.data', 'L-VWSD_translation.data.json')
+        lvwsd_path = os.path.join(self.L_VWSD_dir,'main.data', 'T-VWSD_translation.data.json')
         with open(lvwsd_path, 'r', encoding='utf-8') as f:
             self.lvwsd_df = json.load(f)
         self.lvwsd_df = pd.DataFrame(self.lvwsd_df)
@@ -42,7 +49,7 @@ class load_data(object):
         it_gold = open(os.path.join(testdata_root, 'it.test.gold.v1.1.txt'), 'r', encoding='utf-8').readlines()
 
         # integrate data
-        test_image_dir = os.path.join(self.official_data_dir, 'image_vecs')
+        test_image_dir = os.path.join(self.official_data_dir, 'images')
         self.entest_df = self.integrate_data(en_data,en_gold,test_image_dir)
         self.fatest_df = self.integrate_data(fa_data,fa_gold,test_image_dir)
         self.ittest_df = self.integrate_data(it_data, it_gold, test_image_dir)
@@ -55,7 +62,7 @@ class load_data(object):
             temp['amb'] = c[0]
             temp['phrase'] = c[1]
             candidate_imgs = c[2:]
-            img_paths = [os.path.join(image_dir, cand+'_vec.pkl') for cand in candidate_imgs]
+            img_paths = [os.path.join(image_dir, cand) for cand in candidate_imgs]
             temp['candidate_imgs'] = candidate_imgs
             temp['img_paths'] = img_paths
             temp['gold_img'] = gold[i].strip()
@@ -64,8 +71,8 @@ class load_data(object):
         return df
 
     def sense_supplement(self):
-        # load sense from chatgpt
-        sense_dir = os.path.join(self.official_data_dir,'sense_norepeat')
+        # load gloss from chatgpt
+        sense_dir = os.path.join(self.official_data_dir,'gloss_chatgpt')
         en_sense = open(os.path.join(sense_dir, 'en.txt'), 'r', encoding='utf-8').readlines()
         fa_sense = open(os.path.join(sense_dir, 'fa.txt'), 'r', encoding='utf-8').readlines()
         it_sense = open(os.path.join(sense_dir, 'it.txt'), 'r', encoding='utf-8').readlines()
@@ -100,10 +107,9 @@ class load_data(object):
         return df
 
 def get_img_vec(image_path):
-    with open(image_path,'rb') as f:
-        image_vec = pickle.load(f)
-        key = list(image_vec.keys())[0]
-        image_vec = image_vec[key].unsqueeze(0)
+    image = Image.open(image_path).convert("RGB")
+    image_vec = _transform(image)
+    image_vec = image_vec.unsqueeze(0)
     return image_vec
 
 class train_dataset(Dataset):
@@ -111,7 +117,7 @@ class train_dataset(Dataset):
         super(train_dataset, self).__init__()
         self.lvwsd_df = data.lvwsd_df
         self.imgid2senid = data.imgid2senid
-        self.image_dir = os.path.join(args.L_VWSD_dir,'image_vecs')
+        self.image_dir = os.path.join(args.L_VWSD_dir,'images')
         self.image_keys = list(data.imgid2senid.keys())
         self.args = args
         self.mode = mode
@@ -150,7 +156,7 @@ class train_dataset(Dataset):
         image_labels = [1] * len(image_ids) + [0] * (5-len(image_ids))
         if len(image_ids) < 5:
             image_ids = self.image_supplement(image_ids,5-len(image_ids))
-        image_paths = [os.path.join(self.image_dir,str(id)+'.jpg_vec.pkl') for id in image_ids]
+        image_paths = [os.path.join(self.image_dir,str(id)+'.jpg') for id in image_ids]
         image_vecs = torch.vstack([get_img_vec(path) for path in image_paths])
 
         return ambiguous_word,word_language,sense_id,concepts,glosses,image_ids,image_vecs,image_labels
