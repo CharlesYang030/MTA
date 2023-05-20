@@ -1,3 +1,9 @@
+'''
+ # Copyright
+ # 2023/2/18
+ # Team: Text Analytics and Mining Lab (TAM) of South China Normal University
+ # Author: Charles Yang
+'''
 import random
 import os
 from datetime import datetime
