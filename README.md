@@ -15,3 +15,15 @@ Our code has been implemented on Pytorch 1.8.1. To reproduce our experiments, pl
 ### Usage
 #### 1.Download the datasets: 
 Please click [Link](https://1drv.ms/u/s!AgvzREJAm7GyhEH4UfA4QFhhCM7E) to download our T-VWSD dataset and the official test set, and then unzip and put it in the project directory.
+
+#### 2.To train from the scratch, please run:
+```.
+python main.py
+```
+In training, the checkpoint of the best model will be saved into `./save_model`, the log of the training process will be saved into `./log`, and the outputs of each epoch will be saved into `./result`.
+
+#### 3.To evaluate using the best checkpoint, please run:
+```.
+python main.py --use_checkpoint --evaluate 
+```
+---
