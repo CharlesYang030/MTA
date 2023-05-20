@@ -8,3 +8,10 @@ Visual Word Sense Disambiguation (Visual-WSD), as a subtask of fine-grained imag
 #### ChatGPT-3.5 for gloss supplement:
 ![image](./Fig/ChatGPT.png)
 ---
+
+### Environment
+Our code has been implemented on Pytorch 1.8.1. To reproduce our experiments, please run: <pre/>pip install -r requirements.txt</pre> 
+
+### Usage
+#### 1.Download the datasets: 
+Please click on the following links to download the official training/test set and our V-WSD KB, and then create a new `. /data` folder in the project directory.
