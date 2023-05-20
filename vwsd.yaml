@@ -1,5 +1,5 @@
-L_VWSD_dir: 'D:\工作\L-VWSD\L-VWSD'
-official_data_dir: 'E:\Datasets\2023VisualWSD\vwsd\official.testdata'
+L_VWSD_dir: './data/T-VWSD'
+official_data_dir: './data/test.data'
 
 save_dir: './save_model/'
 log_dir: './log/'
