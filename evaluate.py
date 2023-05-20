@@ -1,3 +1,9 @@
+'''
+ # Copyright
+ # 2023/4/28
+ # Team: Text Analytics and Mining Lab (TAM) of South China Normal University
+ # Author: Charles Yang
+'''
 import torch
 import torch.nn.functional as F
 import numpy as np
