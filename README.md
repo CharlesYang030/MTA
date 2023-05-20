@@ -27,3 +27,6 @@ In training, the checkpoint of the best model will be saved into `./save_model`,
 python main.py --use_checkpoint --evaluate 
 ```
 ---
+
+### Acknowledgement
+FCLL is inspired by CLIP and MoCo, simultaneously relies on resources from BLIP and BabelNet. The original authors and their open-sourcing are appreciated.
