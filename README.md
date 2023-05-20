@@ -14,7 +14,7 @@ Our code has been implemented on Pytorch 1.8.1. To reproduce our experiments, pl
 
 ### Usage
 #### 1.Download the datasets: 
-Please click [Link](https://1drv.ms/u/s!AgvzREJAm7GyhEH4UfA4QFhhCM7E) to download our T-VWSD dataset and the official test set, and then unzip and put it in the project directory.
+Please click [Link](https://1drv.ms/u/s!AgvzREJAm7GyhEH4UfA4QFhhCM7E) to download our **T-VWSD dataset** and the official **test set**, and then unzip and put it in the project directory.
 
 #### 2.To train from the scratch, please run:
 ```.
