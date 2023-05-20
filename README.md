@@ -29,4 +29,4 @@ python main.py --use_checkpoint --evaluate
 ---
 
 ### Acknowledgement
-FCLL is inspired by CLIP and MoCo, simultaneously relies on resources from BLIP and BabelNet. The original authors and their open-sourcing are appreciated.
+MTA is an enhanced version of [FCLL](https://github.com/CharlesYang030/FCLL) and is inspired by [CLIP](https://github.com/openai/CLIP) and [MoCo](https://github.com/facebookresearch/moco), simultaneously relies on resources from [BLIP](https://github.com/salesforce/BLIP) and [BabelNet](https://babelnet.org/). The original authors and their open-sourcing are appreciated.
