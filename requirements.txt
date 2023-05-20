@@ -1,0 +1,11 @@
+ftfy==6.1.1
+numpy==1.23.5
+pandas==1.5.2
+Pillow==9.5.0
+pytest==7.3.1
+PyYAML==6.0
+regex==2022.10.31
+setuptools==65.5.0
+torch==1.8.1+cu111
+torchvision==0.9.1+cu111
+tqdm==4.64.1

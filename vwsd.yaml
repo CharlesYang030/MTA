@@ -1,0 +1,14 @@
+L_VWSD_dir: 'D:\工作\L-VWSD\L-VWSD'
+official_data_dir: 'E:\Datasets\2023VisualWSD\vwsd\official.testdata'
+
+save_dir: './save_model/'
+log_dir: './log/'
+
+seed: 42
+train_batch_size: 128
+eval_batch_size: 16
+num_workers: 8
+epochs: 50
+
+alpha: 0.0
+
