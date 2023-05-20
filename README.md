@@ -6,4 +6,4 @@ Visual Word Sense Disambiguation (Visual-WSD), as a subtask of fine-grained imag
 ![image](./Fig/framework.png)
 #### 
 #### ChatGPT-3.5 for gloss supplement:
-![image](./Fig/ChatGPT model.png)
+![image](./Fig/ChatGPT.png)
