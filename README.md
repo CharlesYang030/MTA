@@ -15,6 +15,7 @@ Our code has been implemented on Pytorch 1.8.1. To reproduce our experiments, pl
 ### Usage
 #### 1.Download the datasets: 
 1) If you are interested in our T-VWSD dataset, you can click the following links to download the different datasets separately.
+
 Datasets | Context types | Word-Context | Total texts | Total images | Ambiguous words | Entity correspondence | Size | Link
 --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:
 Official training set | phrase | 12,869 | 12,869 | 12,999 | English:12,825 Farsi:1 Italian:0 | Word-Text:1-1 Text-Image:1-1 | 16.8GB | [Download](https://1drv.ms/u/s!AgvzREJAm7GyhEH4UfA4QFhhCM7E)
